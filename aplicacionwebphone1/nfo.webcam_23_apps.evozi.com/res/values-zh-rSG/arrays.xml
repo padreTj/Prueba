@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rate_note">
+        <item>很不喜歡</item>
+        <item>不喜欢</item>
+        <item>还行</item>
+        <item>喜欢</item>
+        <item>超喜欢</item>
+    </string-array>
+</resources>

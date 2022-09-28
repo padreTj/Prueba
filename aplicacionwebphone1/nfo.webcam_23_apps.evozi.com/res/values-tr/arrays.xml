@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rate_note">
+        <item>Hiç beğenmedim</item>
+        <item>Beğenmedim</item>
+        <item>Fena değil</item>
+        <item>Beğendim</item>
+        <item>Bayıldım</item>
+    </string-array>
+</resources>

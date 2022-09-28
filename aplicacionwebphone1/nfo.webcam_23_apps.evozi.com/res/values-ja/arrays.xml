@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rate_note">
+        <item>最低</item>
+        <item>イマイチ</item>
+        <item>普通</item>
+        <item>好き</item>
+        <item>最高</item>
+    </string-array>
+</resources>

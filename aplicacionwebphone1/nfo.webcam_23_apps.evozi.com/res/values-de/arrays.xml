@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rate_note">
+        <item>Richtig schlecht</item>
+        <item>Nicht so gut</item>
+        <item>Mittelmäßig</item>
+        <item>Gut</item>
+        <item>Exzellent</item>
+    </string-array>
+</resources>

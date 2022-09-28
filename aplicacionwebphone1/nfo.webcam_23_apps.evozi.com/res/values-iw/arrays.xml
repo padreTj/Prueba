@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rate_note">
+        <item>שנאתי</item>
+        <item>לא אהבתי</item>
+        <item>זה בסדר</item>
+        <item>אהבתי</item>
+        <item>אהבתי מאוד</item>
+    </string-array>
+</resources>

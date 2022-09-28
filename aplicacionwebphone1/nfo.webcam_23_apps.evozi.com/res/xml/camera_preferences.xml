@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="@string/pref_new_id" android:key="@string/pref_camera_key"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference android:title="@string/pref_new_id" android:key="newIdKey" />
+    <SwitchPreference android:title="pref_auto_run" android:key="pref_auto_run_key" android:defaultValue="false" />
+    <CheckBoxPreference android:title="@string/pref_auto_run" android:key="@string/pref_auto_run_key" android:defaultValue="false" />
+</PreferenceScreen>

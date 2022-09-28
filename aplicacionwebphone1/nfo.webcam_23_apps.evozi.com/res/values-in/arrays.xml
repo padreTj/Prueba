@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rate_note">
+        <item>Benci</item>
+        <item>Tidak suka</item>
+        <item>Lumayan</item>
+        <item>Menyukai ini</item>
+        <item>Suka sekali</item>
+    </string-array>
+</resources>

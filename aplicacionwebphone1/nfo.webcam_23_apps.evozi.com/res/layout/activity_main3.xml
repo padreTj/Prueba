@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout android:id="@id/drawer_layout" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.design.widget.CoordinatorLayout android:background="#ff802020" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+      xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+        <android.support.design.widget.AppBarLayout android:theme="@style/ThemeOverlay.AppCompat.Dark" android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="wrap_content" app:elevation="0.0px">
+            <android.support.v7.widget.Toolbar android:id="@id/toolbar" android:layout_width="fill_parent" android:layout_height="?actionBarSize" app:popupTheme="@style/AppTheme.PopupOverlay" />
+        </android.support.design.widget.AppBarLayout>
+        <FrameLayout android:id="@id/container" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <TextView android:textColor="#ffffffff" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="test 1" />
+        </FrameLayout>
+    </android.support.design.widget.CoordinatorLayout>
+    <android.support.design.widget.NavigationView android:layout_gravity="start" android:id="@id/nav_view" android:background="#00000000" android:fitsSystemWindows="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="52.0dip" app:menu="@menu/connect_menu" />
+</android.support.v4.widget.DrawerLayout>

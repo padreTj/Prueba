@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout android:id="@id/drawer_layout" android:background="#ff000000" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.design.widget.CoordinatorLayout android:background="#ff000000" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+      xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+        <FrameLayout android:id="@id/container" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <org.webrtc.SurfaceViewRenderer android:id="@id/local_video_render" android:visibility="invisible" android:layout_width="1.0px" android:layout_height="1.0px" />
+                <org.webrtc.SurfaceViewRenderer android:id="@id/remote_video_render" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_centerVertical="true" />
+                <ImageView android:id="@id/mic_on_big" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_centerVertical="true" app:srcCompat="@drawable/ic_mic_none_96dp" />
+                <com.google.android.gms.ads.AdView android:id="@id/adView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" ads:adSize="BANNER" ads:adUnitId="ca-app-pub-6657825243619641/2606056356" xmlns:ads="http://schemas.android.com/apk/res-auto" />
+            </RelativeLayout>
+        </FrameLayout>
+        <android.support.design.widget.AppBarLayout android:theme="@style/ThemeOverlay.AppCompat.Dark" android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="wrap_content" app:elevation="0.0px">
+            <android.support.v7.widget.Toolbar android:id="@id/toolbar3" android:layout_width="fill_parent" android:layout_height="?actionBarSize" app:popupTheme="@style/AppTheme.PopupOverlay" />
+        </android.support.design.widget.AppBarLayout>
+    </android.support.design.widget.CoordinatorLayout>
+    <android.support.design.widget.NavigationView android:layout_gravity="start" android:id="@id/nav_view" android:background="#00000000" android:fitsSystemWindows="true" android:layout_width="wrap_content" android:layout_height="fill_parent" app:itemIconTint="#ffffffff" app:itemTextColor="#ffffffff" app:menu="@menu/viewer_left_menu" />
+</android.support.v4.widget.DrawerLayout>

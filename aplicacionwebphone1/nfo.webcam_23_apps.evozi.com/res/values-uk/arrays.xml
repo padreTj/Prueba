@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rate_note">
+        <item>Hated it</item>
+        <item>Зовсім не подобається</item>
+        <item>Не дуже подобається</item>
+        <item>Подобається</item>
+        <item>Дуже подобається</item>
+    </string-array>
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="28" android:compileSdkVersionCodename="9" package="nfo.webcam" platformBuildVersionCode="28" platformBuildVersionName="9">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="com.android.vending.BILLING"/>
+    <application android:allowBackup="true" android:appComponentFactory="android.support.v4.app.CoreComponentFactory" android:icon="@mipmap/webcam_icon512" android:label="@string/app_title" android:name="android.support.multidex.MultiDexApplication" android:supportsRtl="true" android:theme="@style/AppTheme">
+        <activity android:name="nfo.webcam.EntranceActivity" android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/camera" android:name="nfo.webcam.CameraActivity" android:parentActivityName="nfo.webcam.EntranceActivity" android:theme="@style/CameraTheme">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".EntranceActivity"/>
+        </activity>
+        <activity android:label="@string/viewer" android:name="nfo.webcam.AccessActivity" android:parentActivityName="nfo.webcam.EntranceActivity" android:theme="@style/ViewerTheme">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".EntranceActivity"/>
+        </activity>
+        <activity android:label="" android:name="nfo.webcam.ViewerActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".AccessActivity"/>
+        </activity>
+        <activity android:label="@string/title_activity_camera_preference" android:name="nfo.webcam.CameraPreferenceActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <service android:enabled="true" android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:name="com.google.android.gms.ads.AdActivity" android:theme="@android:style/Theme.Translucent"/>
+        <activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <meta-data android:name="com.android.dynamic.apk.fused.modules" android:value="base"/>
+        <meta-data android:name="com.android.vending.splits" android:resource="@xml/splits0"/>
+        <meta-data android:name="com.android.vending.derived.apk.id" android:value="23"/>
+    </application>
+</manifest>

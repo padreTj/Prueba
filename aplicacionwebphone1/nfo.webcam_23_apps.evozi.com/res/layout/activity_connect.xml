@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="16.0dip" android:weightSum="1.0" android:layout_centerHorizontal="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/room_edittext_description" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/room_description" />
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="8.0dip">
+        <EditText android:id="@id/room_edittext" android:layout_width="0.0dip" android:layout_height="wrap_content" android:singleLine="true" android:layout_weight="1.0" android:inputType="text" android:imeOptions="actionDone" />
+        <ImageButton android:id="@id/connect_button" android:background="@android:drawable/sym_action_call" android:layout_width="48.0dip" android:layout_height="48.0dip" android:contentDescription="@string/connect_description" />
+        <ImageButton android:id="@id/add_favorite_button" android:background="@android:drawable/ic_input_add" android:layout_width="48.0dip" android:layout_height="48.0dip" android:contentDescription="@string/add_favorite_description" />
+    </LinearLayout>
+    <TextView android:textAppearance="?android:textAppearanceMedium" android:gravity="center_vertical" android:id="@id/room_listview_description" android:layout_width="fill_parent" android:layout_height="48.0dip" android:layout_marginTop="8.0dip" android:text="@string/favorites" android:maxLines="1" android:lines="1" />
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <ListView android:id="@id/room_listview" android:layout_width="fill_parent" android:layout_height="fill_parent" android:drawSelectorOnTop="false" />
+        <TextView android:gravity="center" android:id="@android:id/empty" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/no_favorites" />
+    </FrameLayout>
+</LinearLayout>

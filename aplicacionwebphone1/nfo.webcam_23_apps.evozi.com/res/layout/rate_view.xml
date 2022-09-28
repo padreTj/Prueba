@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:paddingLeft="16.0dip" android:paddingTop="16.0dip" android:paddingRight="16.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="16.0dip" android:id="@id/titleText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/rate_app" android:layout_alignLeft="@id/starLayout" android:layout_alignParentTop="true" />
+    <LinearLayout android:orientation="horizontal" android:id="@id/starLayout" android:paddingTop="8.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/titleText" android:layout_centerHorizontal="true">
+        <ImageView android:paddingRight="4.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <ImageView android:paddingRight="4.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <ImageView android:paddingRight="4.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <ImageView android:paddingRight="4.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </LinearLayout>
+    <EditText android:id="@id/noteEdit" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="@string/tell_us" android:layout_below="@id/starLayout" />
+    <TextView android:textSize="16.0dip" android:textStyle="bold" android:textColor="@color/colorStar" android:id="@id/submitText" android:paddingLeft="8.0dip" android:paddingTop="8.0dip" android:paddingRight="16.0dip" android:paddingBottom="16.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/submit" android:layout_below="@id/noteEdit" android:layout_alignParentRight="true" />
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rate_note">
+        <item>Ghét</item>
+        <item>Không thích</item>
+        <item>OK</item>
+        <item>Thích</item>
+        <item>Rãt thích</item>
+    </string-array>
+</resources>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="IP Webcam"/>
+    <link rel="shortcut icon" href="ico/favicon.png"/>
+
+    <title>IP摄像头</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="ipwebcam.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="js/jquery.js"></script>
+    <script src="jquery_flot.js"></script>
+    <script src="lang.js"></script>
+    <script src="js/ipwebcam.js"></script>
+    <script src="js/ipwebcam_override.js"></script>
+    <script src="js/ipwebcam_plugins.js"></script>
+    <script src="js/bootstrap.js"></script>
+    
+    <script type="text/javascript">
+      //<!--
+      
+      //-->
+    </script>
+
+
+  </head>
+
+  <body>
+    <div class="container">
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+  <label for="range_zoom" class="col-xs-3 control-label">变焦</label>
+  <div class="col-xs-8">
+    <input id="range_zoom" class="col-xs-12" type="range" min="0" max="0"/>
+  </div>
+  <label for="range_zoom" id="range_zoom_label" class="control-label col-xs-1 nopadding">1 X</label>
+</div>
+
+<div class="form-group" id="focal_length_host">
+  <label for="range_focal_length" class="col-xs-3 control-label">光学变焦</label>
+  <div class="col-xs-8">
+    <input id="range_focal_length" class="col-xs-12" type="range" min="0" max="0"/>
+  </div>
+  <label for="range_focal_length" id="range_focal_length_label" class="control-label col-xs-1 nopadding">1 X</label>
+</div>
+
+
+<div class="form-group" id="crop_host">
+  <label class="col-xs-3 control-label">裁剪</label>
+  <div class="col-xs-4">
+    <label class="col-xs-2 nopadding" for="range_crop_x">X:</label> <input class="col-xs-10" id="range_crop_x" type="range" min="0" max="100" value="50"/>
+  </div>
+  <div class="col-xs-4">
+    <label class="col-xs-2 nopadding" for="range_crop_y">Y:</label> <input class="col-xs-10" id="range_crop_y" type="range" min="0" max="100" value="50" />
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="range_quality" class="col-xs-3 control-label">流质量</label>
+  <div class="col-xs-8">
+    <input id="range_quality" class="col-xs-12" type="range" min="1" max="100"/>
+  </div>
+  <label for="range_quality" id="range_quality_label" class="control-label col-xs-1 nopadding">50%</label>
+</div>
+
+<div class="form-group" id="exposure_host">
+  <label for="range_exposure" class="col-xs-3 control-label">曝光补偿</label>
+  <div class="col-xs-7">
+    <input id="range_exposure" class="col-xs-12" type="range" min="1" max="100"/>
+  </div>
+  <label for="range_exposure" id="range_exposure_label" class="control-label col-xs-2 nopadding">0</label>
+</div>
+
+<div class="form-group">
+  <label for="flashbtn" class="col-xs-3 control-label">杂项</label>
+  <div class="col-xs-9">
+    <div class="btn-group" data-toggle="buttons">
+      <label id="focusbtn" class="btn btn-sm btn-default">
+        <input id="focuscb" type="checkbox"/> <span class="glyphicon glyphicon-screenshot"></span> 保持自动对焦
+      </label>
+      <label id="flashbtn" class="btn btn-sm btn-default">
+        <input id="flashcb" type="checkbox"/> <span class="glyphicon glyphicon-adjust"></span> LED闪光灯
+      </label>
+      <label id="overlaybtn" class="btn btn-sm btn-default">
+        <input id="overlaycb" type="checkbox"/> <span class="glyphicon glyphicon-info-sign"></span> 覆盖层
+      </label>
+      <label id="nvbtn" class="btn btn-sm btn-default">
+        <input id="nvcb" type="checkbox"/> <span class="glyphicon glyphicon-eye-open"></span> 夜视
+      </label>
+    </div>
+  </div>
+</div>
+
+<div id="ffc_form" class="form-group">
+  <label for="ffcbtn" class="col-xs-3 control-label">前置摄像头</label>
+  <div class="col-xs-9">
+    <div id="ffc_res_unsupported" style="display: none;">前置摄像头热切换在该分辨率下不可用</div>
+
+    <div id="ffcbtn" class="btn btn-sm btn-default" style="display: none;">
+      <img id="img_ffc_current" style="width: 3em; height: 3em;" src="ic_switch_camera_back_normal.png" alt="Back camera"> <span class="glyphicon glyphicon-arrow-right"></span> <img id="img_ffc_alt" style="width: 3em; height: 3em;" src="ic_switch_camera_front_normal.png" alt="Front-facing camera">
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="modet_toggle" class="col-xs-3 control-label">动作检测</label>
+  <div class="col-xs-9">
+    <div id="modet_toggle" class="btn btn-sm btn-default"><i class="material-icons">directions_run</i> 已启用</div>
+
+    <div id="motion_display" class="btn btn-sm btn-default"><i class="material-icons">&#xE417;</i> 查看区域</div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="modet_slider" class="col-xs-5 control-label">更灵敏</label>
+  <div class="col-xs-4">
+    <input id="range_motion_limit" class="col-xs-12" type="range" min="1" max="1000"/>
+  </div>
+  <label for="modet_slider" class="col-xs-3 control-label" style="text-align: left;">更不灵敏</label>
+</div>
+
+<div class="form-group">
+<p><a class="btn btn-default" href="sensors.html" target="_blank">打开传感器图象 &raquo;</a></p>
+</div>
+
+<div id="modet_areas" class="panel-heading">
+<h4 class="panel-title">
+  <a data-toggle="collapse" href="#modetAreasPanel">动作检测区域 <b class="caret"></b></a>
+</h4>
+</div>
+<div id="modetAreasPanel" class="collapse">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6"><div class="row"><button type="button" data-num="0,0" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma00">&nbsp;</button><button type="button" data-num="1,0" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma10">&nbsp;</button><button type="button" data-num="2,0" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma20">&nbsp;</button><button type="button" data-num="3,0" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma30">&nbsp;</button><button type="button" data-num="4,0" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma40">&nbsp;</button><button type="button" data-num="5,0" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma50">&nbsp;</button><button type="button" data-num="6,0" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma60">&nbsp;</button><button type="button" data-num="7,0" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma70">&nbsp;</button></div><div class="row"><button type="button" data-num="0,1" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma01">&nbsp;</button><button type="button" data-num="1,1" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma11">&nbsp;</button><button type="button" data-num="2,1" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma21">&nbsp;</button><button type="button" data-num="3,1" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma31">&nbsp;</button><button type="button" data-num="4,1" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma41">&nbsp;</button><button type="button" data-num="5,1" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma51">&nbsp;</button><button type="button" data-num="6,1" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma61">&nbsp;</button><button type="button" data-num="7,1" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma71">&nbsp;</button></div><div class="row"><button type="button" data-num="0,2" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma02">&nbsp;</button><button type="button" data-num="1,2" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma12">&nbsp;</button><button type="button" data-num="2,2" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma22">&nbsp;</button><button type="button" data-num="3,2" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma32">&nbsp;</button><button type="button" data-num="4,2" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma42">&nbsp;</button><button type="button" data-num="5,2" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma52">&nbsp;</button><button type="button" data-num="6,2" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma62">&nbsp;</button><button type="button" data-num="7,2" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma72">&nbsp;</button></div><div class="row"><button type="button" data-num="0,3" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma03">&nbsp;</button><button type="button" data-num="1,3" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma13">&nbsp;</button><button type="button" data-num="2,3" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma23">&nbsp;</button><button type="button" data-num="3,3" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma33">&nbsp;</button><button type="button" data-num="4,3" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma43">&nbsp;</button><button type="button" data-num="5,3" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma53">&nbsp;</button><button type="button" data-num="6,3" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma63">&nbsp;</button><button type="button" data-num="7,3" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma73">&nbsp;</button></div><div class="row"><button type="button" data-num="0,4" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma04">&nbsp;</button><button type="button" data-num="1,4" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma14">&nbsp;</button><button type="button" data-num="2,4" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma24">&nbsp;</button><button type="button" data-num="3,4" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma34">&nbsp;</button><button type="button" data-num="4,4" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma44">&nbsp;</button><button type="button" data-num="5,4" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma54">&nbsp;</button><button type="button" data-num="6,4" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma64">&nbsp;</button><button type="button" data-num="7,4" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma74">&nbsp;</button></div><div class="row"><button type="button" data-num="0,5" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma05">&nbsp;</button><button type="button" data-num="1,5" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma15">&nbsp;</button><button type="button" data-num="2,5" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma25">&nbsp;</button><button type="button" data-num="3,5" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma35">&nbsp;</button><button type="button" data-num="4,5" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma45">&nbsp;</button><button type="button" data-num="5,5" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma55">&nbsp;</button><button type="button" data-num="6,5" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma65">&nbsp;</button><button type="button" data-num="7,5" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma75">&nbsp;</button></div><div class="row"><button type="button" data-num="0,6" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma06">&nbsp;</button><button type="button" data-num="1,6" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma16">&nbsp;</button><button type="button" data-num="2,6" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma26">&nbsp;</button><button type="button" data-num="3,6" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma36">&nbsp;</button><button type="button" data-num="4,6" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma46">&nbsp;</button><button type="button" data-num="5,6" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma56">&nbsp;</button><button type="button" data-num="6,6" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma66">&nbsp;</button><button type="button" data-num="7,6" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma76">&nbsp;</button></div><div class="row"><button type="button" data-num="0,7" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma07">&nbsp;</button><button type="button" data-num="1,7" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma17">&nbsp;</button><button type="button" data-num="2,7" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma27">&nbsp;</button><button type="button" data-num="3,7" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma37">&nbsp;</button><button type="button" data-num="4,7" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma47">&nbsp;</button><button type="button" data-num="5,7" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma57">&nbsp;</button><button type="button" data-num="6,7" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma67">&nbsp;</button><button type="button" data-num="7,7" class="col-xs-1 btn btn-default btn-xs tbtn" id="ma77">&nbsp;</button></div></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="panel-heading">
+  <h4 class="panel-title">
+    <a data-toggle="collapse" href="#advSettings">
+      高级设置 <b class="caret"></b>
+    </a>
+  </h4>
+</div><div id="advSettings" class="collapse">
+
+  <div class="form-group">
+    <label for="range_nightvision_gain" class="col-xs-3 control-label">夜视增益</label>
+      <div class="col-xs-8">
+        <input id="range_nightvision_gain" class="col-xs-11" type="range" min="1" max="240" value="1"/>
+        <div class="col-xs-1 btn btn-sm btn-default" style="padding: 0;" id="set_nvg_1">1X</div>
+      </div>
+    <label for="range_nightvision_gain" id="range_nightvision_gain_label" class="control-label col-xs-1 nopadding">0</label>
+  </div>
+
+  <div class="form-group">
+    <label for="range_nightvision_average" class="col-xs-3 control-label">夜视曝光</label>
+      <div class="col-xs-8">
+        <input id="range_nightvision_average" class="col-xs-11" type="range" min="1" max="20" value="1" />
+        <div class="col-xs-1 btn btn-sm btn-default" style="padding: 0;" id="set_avg_2">2</div>
+      </div>
+    <label for="range_nightvision_average" id="range_nightvision_average_label" class="control-label col-xs-1 nopadding">0</label>
+  </div><div id="video_size_holder" class="form-group">
+  <label for="video_size_btn" class="col-xs-3 control-label">视频分辨率</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="video_size_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="video_size">
+      </ul>
+    </div>
+  </div>
+</div><div id="orientation_holder" class="form-group">
+  <label for="orientation_btn" class="col-xs-3 control-label">方向</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="orientation_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="orientation">
+      </ul>
+    </div>
+  </div>
+</div><div id="mirror_flip_holder" class="form-group">
+  <label for="mirror_flip_btn" class="col-xs-3 control-label">镜像和翻转</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="mirror_flip_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="mirror_flip">
+      </ul>
+    </div>
+  </div>
+</div><div id="photo_size_holder" class="form-group">
+  <label for="photo_size_btn" class="col-xs-3 control-label">照片分辨率</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="photo_size_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="photo_size">
+      </ul>
+    </div>
+  </div>
+</div><div id="coloreffect_holder" class="form-group">
+  <label for="coloreffect_btn" class="col-xs-3 control-label">色彩特效</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="coloreffect_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="coloreffect">
+      </ul>
+    </div>
+  </div>
+</div></div>
+
+<div class="panel-heading">
+  <h4 class="panel-title">
+    <a data-toggle="collapse" href="#focusSettings">
+      对焦模式 <b class="caret"></b>
+    </a>
+  </h4>
+</div>
+
+<div id="focusSettings" class="collapse"><div id="focusmode_holder" class="form-group">
+  <label for="focusmode_btn" class="col-xs-3 control-label">对焦模式</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="focusmode_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="focusmode">
+      </ul>
+    </div>
+  </div>
+</div><div class="form-group" id="focus_distance_host">
+    <label for="range_focus_distance" class="col-xs-3 control-label">对焦距离</label>
+    <div class="col-xs-8">
+      <input id="range_focus_distance" class="col-xs-12" type="range" min="1" max="100"/>
+    </div>
+    <label for="range_focus_distance" id="range_focus_distance_label" class="control-label col-xs-1 nopadding">0</label>
+  </div>
+</div>
+
+<div class="panel-heading">
+  <h4 class="panel-title">
+    <a data-toggle="collapse" href="#autoSensorSettings">
+      自动传感器控制 <b class="caret"></b>
+    </a>
+  </h4>
+</div>
+
+
+<div id="autoSensorSettings" class="collapse"><div id="scenemode_holder" class="form-group">
+  <label for="scenemode_btn" class="col-xs-3 control-label">场景模式</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="scenemode_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="scenemode">
+      </ul>
+    </div>
+  </div>
+</div><div id="flashmode_holder" class="form-group">
+  <label for="flashmode_btn" class="col-xs-3 control-label">闪光模式</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="flashmode_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="flashmode">
+      </ul>
+    </div>
+  </div>
+</div><div id="antibanding_holder" class="form-group">
+  <label for="antibanding_btn" class="col-xs-3 control-label">防闪烁</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="antibanding_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="antibanding">
+      </ul>
+    </div>
+  </div>
+</div><div id="whitebalance_holder" class="form-group">
+  <label for="whitebalance_btn" class="col-xs-3 control-label">白平衡</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="whitebalance_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="whitebalance">
+      </ul>
+    </div>
+  </div>
+</div><div id="exposure_lock_holder" class="form-group">
+  <label for="exposure_lock_btn" class="col-xs-3 control-label">锁定曝光</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="exposure_lock_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="exposure_lock">
+      </ul>
+    </div>
+  </div>
+</div><div id="whitebalance_lock_holder" class="form-group">
+  <label for="whitebalance_lock_btn" class="col-xs-3 control-label">锁定白平衡</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="whitebalance_lock_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="whitebalance_lock">
+      </ul>
+    </div>
+  </div>
+</div></div>
+
+<div class="panel-heading">
+  <h4 class="panel-title">
+    <a data-toggle="collapse" href="#manualSensorSettings">
+      手动传感器控制 <b class="caret"></b>
+    </a>
+  </h4>
+</div>
+
+<div id="manualSensorSettings" class="collapse">
+  
+  <div id="manual_sensor_holder" class="form-group">
+  <label for="manual_sensor_btn" class="col-xs-3 control-label">传感器控制</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="manual_sensor_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="manual_sensor">
+      </ul>
+    </div>
+  </div>
+</div>
+  
+  <div id="aperture_holder" class="form-group">
+  <label for="aperture_btn" class="col-xs-3 control-label">光圈</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="aperture_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="aperture">
+      </ul>
+    </div>
+  </div>
+</div>
+  
+  <div id="filter_density_holder" class="form-group">
+  <label for="filter_density_btn" class="col-xs-3 control-label">滤镜强度</label>
+  <div class="col-xs-9">
+    <div class="input-group">
+      <button id="filter_density_btn" class="btn btn-default btn-sm dropdown-toggle disabled" type="button" data-toggle="dropdown">
+        加载中… <b class="caret"></b>
+      </button>
+      <ul class="dropdown-menu" data-container="body" id="filter_density">
+      </ul>
+    </div>
+  </div>
+</div>
+  
+
+
+  <div class="form-group" id="iso_holder">
+    <label for="range_iso" class="col-xs-3 control-label">ISO敏感度</label>
+    <div class="col-xs-8">
+      <input id="range_iso" class="col-xs-12" type="range" min="1" max="100"/>
+    </div>
+    <label for="range_iso" id="range_iso_label" class="control-label col-xs-1 nopadding">0</label>
+  </div>
+
+  <div class="form-group" id="exposure_ns_holder">
+    <label for="range_exposure_ns" class="col-xs-3 control-label">手动曝光, 纳秒</label>
+    <div class="col-xs-8">
+      <input id="range_exposure_ns" class="col-xs-12" type="range" min="1" max="100"/>
+    </div>
+    <label for="range_exposure_ns" id="range_exposure_ns_label" class="control-label col-xs-1 nopadding">0</label>
+  </div>
+
+
+  <div class="form-group" id="frame_duration_holder">
+    <label for="range_frame_duration" class="col-xs-3 control-label">帧长度</label>
+    <div class="col-xs-8">
+      <input id="range_frame_duration" class="col-xs-12" type="range" min="1" max="100"/>
+    </div>
+    <label for="range_frame_duration" id="range_frame_duration_label" class="control-label col-xs-1 nopadding">0</label>
+  </div>
+
+</div>
+    </form>
+    </div>
+
+    <script type="text/javascript">
+      //<!--
+      $(greetInit)
+      //-->
+    </script>
+  </body>
+
+</html>
+

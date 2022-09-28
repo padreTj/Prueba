@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rate_note">
+        <item>Ужасно</item>
+        <item>Плохо</item>
+        <item>Неплохо</item>
+        <item>Хорошо</item>
+        <item>Отлично</item>
+    </string-array>
+</resources>

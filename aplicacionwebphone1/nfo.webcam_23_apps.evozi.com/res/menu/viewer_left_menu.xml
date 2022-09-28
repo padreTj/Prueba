@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@id/group1">
+        <item android:icon="@drawable/ic_spaker_off" android:id="@id/viewer_spake_menu" android:checked="false" android:title="@string/speak" android:checkable="true" />
+        <item android:icon="@drawable/ic_switch_video_viewer" android:id="@id/viewer_switch_menu" android:title="@string/switch_camera" />
+        <item android:icon="@drawable/ic_visibility_off_white_24dp" android:id="@id/viewer_motion_menu" android:checked="false" android:title="@string/motion" android:checkable="true" />
+        <item android:icon="@drawable/ic_mic_off" android:id="@id/viewer_mic_menu" android:checked="false" android:title="@string/mic" android:checkable="true" />
+    </group>
+    <group android:id="@id/group2">
+        <item android:icon="@drawable/ic_music" android:id="@id/viewer_left_ring" android:title="@string/ring" />
+        <item android:icon="@drawable/ic_notifications" android:id="@id/viewer_left_alarm" android:title="@string/alarm" />
+    </group>
+    <group android:id="@id/group3">
+        <item android:id="@id/remove_ads" android:title="@string/remove_ads" />
+        <item android:icon="@drawable/ic_power" android:id="@id/viewer_left_close" android:title="@string/close_camera" />
+    </group>
+</menu>

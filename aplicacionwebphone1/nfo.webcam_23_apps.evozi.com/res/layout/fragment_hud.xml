@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageButton android:id="@id/button_toggle_debug" android:background="@android:drawable/ic_menu_info_details" android:layout_width="48.0dip" android:layout_height="48.0dip" android:layout_alignParentBottom="true" android:contentDescription="@string/toggle_debug" />
+    <TextView android:textSize="12.0sp" android:textStyle="bold" android:textColor="#c000ff00" android:id="@id/encoder_stat_call" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="8.0dip" />
+    <TableLayout android:id="@id/hudview_container" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TableRow>
+            <TextView android:textColor="@android:color/black" android:id="@id/hud_stat_bwe" android:background="@android:color/white" android:padding="2.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:alpha="0.4" />
+            <TextView android:textColor="@android:color/black" android:id="@id/hud_stat_connection" android:background="@android:color/white" android:padding="2.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:alpha="0.4" />
+        </TableRow>
+        <TableRow>
+            <TextView android:textColor="@android:color/black" android:id="@id/hud_stat_video_send" android:background="@android:color/white" android:padding="2.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:alpha="0.4" />
+            <TextView android:textColor="@android:color/black" android:id="@id/hud_stat_video_recv" android:background="@android:color/white" android:padding="2.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:alpha="0.4" />
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>
